@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    group:
+      local:
+        - jwt
+        - oauth
+        - local
+    active: local
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true

@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.8'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // Lucene은 텍스트 검색 및 인덱싱 라이브러리로, 대규모 텍스트 기반 데이터의 검색 기능을 제공
+    implementation 'org.apache.lucene:lucene-core:8.9.0'
+    // Google API와 상호작용하기 위한 클라이언트 라이브러리
+    implementation 'org.google.api-client:google-api-client:1.30.10'
+    implementation 'org.querydsl:querydsl-jpa:4.4.0'
+    // @ConfigurationProperties와 같은 어노테이션을 처리하고 메타데이터 파일을 생성하여 개발 시 IDE 지원을 향상
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.querydsl:querydsl-apt:4.4.0:jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'com.google.auth:google-auth-library-oauth2-http:1.2.1'
+    implementation 'com.google.api-client:google-api-client:1.30.10'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.30.6'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0' // 예: Google Drive API 사용 시
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
